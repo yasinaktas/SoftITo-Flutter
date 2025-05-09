@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 void main(List<String> args) {
@@ -68,7 +69,7 @@ void main(List<String> args) {
     print("Su şuanda sıvı halde bulunmaktadır");
   } else {
     print("Su şuanda gaz halde bulunmaktadır");
-  }*/
+  }
 
   stdout.write("Lütfen birinci sayıyı giriniz: ");
   int sayi1 = int.parse(stdin.readLineSync()!);
@@ -87,5 +88,125 @@ void main(List<String> args) {
     print("İyi derecede başarılı");
   }else{
     print("Çok iyi derecede başarılı");
+  }
+
+  for (var i = 0; i <= 10; i++) {
+    print(i);
+  }
+
+  for (var i = 0; i < 11; i++) {
+    print(i);
+  }
+
+  for (var i = 0; i < 10; i += 1) {
+    print(i);
+  }
+
+  for (var i = 0; i < 5; i = i + 1) {
+    print("${i + 1}. Yasin <3 Kader");
+  }
+
+  for (var i = 0; i < 23; i += 2) {
+    print(i);
+  }
+
+  for (var i = 1; i < 40; i += 2) {
+    print(i);
+  }
+
+  var start = 5;
+  var end = 12;
+  for (var i = start; i < end; i++) {
+    print(i);
+  }
+
+  stdout.write("Lütfen 1'den kaça kadar saydırılmasını istiyorsanız giriniz: ");
+  var last = int.parse(stdin.readLineSync()!);
+  for (var i = 1; i <= last; i++) {
+    print(i);
+  }
+
+  stdout.write("Lütfen başlangıcı giriniz: ");
+  int start = int.parse(stdin.readLineSync()!);
+  stdout.write("Lütfen bitişi giriniz: ");
+  int end = int.parse(stdin.readLineSync()!);
+  stdout.write("Lütfen artışı giriniz: ");
+  int inc = int.parse(stdin.readLineSync()!);
+  for (var i = start; i < end; i += inc) {
+    print(i);
+  }
+
+  int sayac = 1;
+  while (sayac <= 4) {
+    print(sayac);
+    sayac++;
+  }
+
+  var sayac = 0;
+  while (sayac < 10) {
+    if (sayac == 3) {
+      break;
+    }
+    print(sayac);
+    sayac++;
+  }
+
+  for (var i = 0; i < 10; i++) {
+    if (i == 4) {
+      continue;
+    }
+    print(i);
+  }
+
+  while (true) {
+    print(
+      "Hoşgeldiniz! Devam etmek için 'E' tuşuna basınız, çıkmak için Q' tuşuna basınız'",
+    );
+    String? value = stdin.readLineSync();
+    if (value == "E" || value == "e") {
+      print("Lütfen adınızı giriniz: ");
+      String? name = stdin.readLineSync();
+      print("Lütfen soyadınızıe giriniz: ");
+      String? surname = stdin.readLineSync();
+      print("Hoşgeldiniz $name $surname");
+    } else if (value == "Q" || value == "q") {
+      break;
+    }
+  }
+
+  while (true) {
+    print(
+      "Hoşgeldiniz! Devam etmek için 'A' tuşuna basınız, çıkmak için Q' tuşuna basınız'",
+    );
+    String? value = stdin.readLineSync();
+    if (value == "A" || value == "a") {
+      print("Lütfen fiyatı giriniz: ");
+      double fiyat = double.parse(stdin.readLineSync()!);
+      print("Lütfen KDV oranını giriniz: ");
+      double kdv = double.parse(stdin.readLineSync()!);
+      print(
+        "$fiyat'lı ürünün, $kdv oranlı son fiyatı ${(fiyat * (kdv + 100)) / 100}'dür.",
+      );
+    } else if (value == "Q" || value == "q") {
+      break;
+    } else {
+      print("Hatalı tuşlama");
+    }
+  }
+
+  while (true) {
+    print("Birinci sayıyı giriniz: ");
+    int sayi1 = int.parse(stdin.readLineSync()!);
+    print("İkinci sayıyı giriniz: ");
+    int sayi2 = int.parse(stdin.readLineSync()!);
+    var result = 0;
+    for (int i = sayi1; i <= sayi2; i++) {
+      result += i;
+    }
+    print(result);
+  }*/
+
+  for (int i = int.parse('a'); i < int.parse('z'); i++) {
+    print(i);
   }
 }
