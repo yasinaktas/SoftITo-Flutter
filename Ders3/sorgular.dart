@@ -204,9 +204,44 @@ void main(List<String> args) {
       result += i;
     }
     print(result);
+  }
+
+  while (true) {
+    print(
+      "Kahve: 100 TL\nÇay: 50 TL\nSoğuk İçecek: 75 TL\nKahve için k, Çay için c, Soğuk İçecek için s tuşuna basınız.",
+    );
+    int kahve = 100;
+    int cay = 50;
+    int sogukIcecek = 75;
+    String secenek = stdin.readLineSync()!;
+    print("Lütfen adedi giriniz: ");
+    int adet = int.parse(stdin.readLineSync()!);
+    int result = 0;
+    if (secenek == "k") {
+      result = kahve * adet;
+    } else if (secenek == "c") {
+      result = cay * adet;
+    } else if (secenek == "s") {
+      result = sogukIcecek * adet;
+    } else {
+      print("Hatalı tuşlama");
+    }
+    print("Siparişiniz hazırlanıyor!");
+    print("Ücret: ${result}\n\n");
   }*/
 
-  for (int i = int.parse('a'); i < int.parse('z'); i++) {
-    print(i);
+  while (true) {
+    double total = 0;
+    int count = 0;
+    print("Pozitif sayı ortalama bulma oyununa hoşgeldiniz: \n");
+    for (int i = 0; i < 20; i++) {
+      print("Lütfen ${i + 1}. sayıyı giriniz: ");
+      double sayi = double.parse(stdin.readLineSync()!);
+      if (sayi > 0) {
+        total += sayi;
+        count++;
+      }
+    }
+    print("Sayıların ortalaması = ${total / count}");
   }
 }
