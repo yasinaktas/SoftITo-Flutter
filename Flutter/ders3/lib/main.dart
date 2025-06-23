@@ -63,9 +63,9 @@ class _Example2State extends State<Example2> {
         onPressed: (){
           print("FAB 1 Basıldı");
         },
-        child: Icon(Icons.add),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        child: Icon(Icons.add),
       ),
     );
   }
