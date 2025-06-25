@@ -1,5 +1,5 @@
-import 'package:ders11/views/ornek5.dart';
 import 'package:flutter/material.dart';
+import 'package:yemekler/views/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Ornek5());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
