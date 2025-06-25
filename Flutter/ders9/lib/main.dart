@@ -1,4 +1,4 @@
-import 'package:ders9/card_and_listtile_kullanimi.dart';
+import 'package:ders9/trendyol_app_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CardAndListTileKullanimi(),
+      home: TrendyolAppBar(),
     );
   }
 }
