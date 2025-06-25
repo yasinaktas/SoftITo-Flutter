@@ -13,6 +13,54 @@ class DetailPage extends StatelessWidget {
         title: Text(yemek.name),
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: Duration(seconds: 1),
+                  action: SnackBarAction(
+                    label: "Paylaş",
+                    onPressed: () {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          content: Text(yemek.desc),
+                          title: Text(yemek.name),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("Paylaş"),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("İptal"),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  content: Text(
+                    "${yemek.name} tarifi kişileriniz ile paylaşılacak...",
+                  ),
+                ),
+              );
+            },
+            icon: Icon(Icons.ios_share),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.close),
+          ),
+        ],
       ),
       body: Column(
         spacing: 20,
