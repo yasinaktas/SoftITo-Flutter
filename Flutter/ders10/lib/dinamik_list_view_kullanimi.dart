@@ -33,11 +33,14 @@ class _DinamikListViewKullanimiState extends State<DinamikListViewKullanimi> {
         backgroundColor: Colors.pink,
         foregroundColor: Colors.white,
       ),
-      body: ListView.builder(
-        itemCount: ulkeler.length,
-        itemBuilder: (context, index) {
-          return UlkeCard(index: index, ulke: ulkeler[index]);
-        },
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: ListView.builder(
+          itemCount: ulkeler.length,
+          itemBuilder: (context, index) {
+            return UlkeCard(index: index, ulke: ulkeler[index]);
+          },
+        ),
       ),
     );
   }

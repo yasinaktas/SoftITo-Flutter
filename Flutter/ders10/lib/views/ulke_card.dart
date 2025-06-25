@@ -15,14 +15,19 @@ class _UlkeCardState extends State<UlkeCard> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
       child: Card(
-        color: widget.index % 2 == 0 ? Colors.green : Colors.pink,
-        child: Container(
-          alignment: Alignment.center,
-          height: 85,
-          child: ListTile(
-            title: Text(widget.ulke, style: TextStyle(color: Colors.white)),
-            leading: CircleAvatar(child: Text("${widget.index + 1}")),
-            trailing: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+        elevation: 2,
+        color: widget.index % 2 == 0 ? Colors.blue : Colors.lightBlueAccent,
+        child: InkWell(
+          onTap: () {},
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            alignment: Alignment.center,
+            height: 85,
+            child: ListTile(
+              title: Text(widget.ulke, style: TextStyle(color: Colors.white)),
+              leading: CircleAvatar(child: Text("${widget.index + 1}")),
+              trailing: Icon(Icons.keyboard_arrow_right, color: Colors.white),
+            ),
           ),
         ),
       ),
