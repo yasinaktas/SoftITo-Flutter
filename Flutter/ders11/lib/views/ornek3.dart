@@ -34,7 +34,7 @@ class Ornek3 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Resim ve Yazı Örnek"),
-        centerTitle: true,
+        centerTitle: false,
         backgroundColor: Colors.limeAccent,
         foregroundColor: Colors.black,
       ),
