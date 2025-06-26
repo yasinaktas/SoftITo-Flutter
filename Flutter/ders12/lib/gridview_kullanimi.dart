@@ -1,3 +1,4 @@
+import 'package:ders12/detay_sayfasi.dart';
 import 'package:flutter/material.dart';
 
 class GridViewKullanimi extends StatelessWidget {
@@ -115,24 +116,42 @@ class _Ornek2State extends State<Ornek2> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey, width: 1),
-              borderRadius: BorderRadius.circular(4),
-              boxShadow: [
-                BoxShadow(offset: Offset(0, 0), spreadRadius: 0, blurRadius: 4),
-              ],
-              image: DecorationImage(
-                opacity: 0.35,
-                image: AssetImage("images/${images[index]}"),
-                fit: BoxFit.cover,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetaySayfasi(
+                    yemek: yemekler[index],
+                    imagePath: "images/${images[index]}",
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey, width: 1),
+                borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(1, 1),
+                    spreadRadius: 0,
+                    blurRadius: 4,
+                    color: Colors.grey.shade500,
+                  ),
+                ],
+                image: DecorationImage(
+                  opacity: 0.35,
+                  image: AssetImage("images/${images[index]}"),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            child: Text(
-              yemekler[index],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              child: Text(
+                yemekler[index],
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         );
