@@ -101,7 +101,7 @@ class _ProductsGridViewState extends State<ProductsGridView> {
         itemCount: products.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 2 / 3,
+          childAspectRatio: 4 / 7,
         ),
         itemBuilder: (context, index) {
           return ProductCard(product: products[index]);
@@ -255,7 +255,7 @@ class _ProductCardState extends State<ProductCard> {
                   children: [
                     Row(
                       children: [
-                        Text("Remaining Time", style: TextStyle(fontSize: 14)),
+                        Text("Remaining Time", style: TextStyle(fontSize: 12)),
                         Spacer(),
                         Text(
                           "${widget.product.remainingTime} Days",
@@ -268,7 +268,7 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                     Row(
                       children: [
-                        Text("Total Ticket", style: TextStyle(fontSize: 14)),
+                        Text("Total Ticket", style: TextStyle(fontSize: 12)),
                         Spacer(),
                         Text(
                           "${widget.product.totalTicket}",
@@ -299,7 +299,7 @@ class _ProductCardState extends State<ProductCard> {
                                 });
                               },
                               child: Text(
-                                isClicked ? "Return Ticket" : "Buy Ticket",
+                                isClicked ? "Return" : "Buy Ticket",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
