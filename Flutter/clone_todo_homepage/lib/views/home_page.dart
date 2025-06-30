@@ -177,8 +177,8 @@ class HomeCard1 extends StatelessWidget {
   Widget build(BuildContext context) {
     Random random = Random();
     final double hue = random.nextDouble() * 360;
-    final double saturation = random.nextDouble() * 0.3 + 0.4;
-    final double lightness = random.nextDouble() * 0.15 + 0.75;
+    final double saturation = random.nextDouble() * 0.4 + 0.2;
+    final double lightness = random.nextDouble() * 0.05 + 0.85;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -314,8 +314,8 @@ class HomeCard2 extends StatelessWidget {
   Widget build(BuildContext context) {
     Random random = Random();
     final double hue = random.nextDouble() * 360;
-    final double saturation = random.nextDouble() * 0.3 + 0.4;
-    final double lightness = random.nextDouble() * 0.15 + 0.75;
+    final double saturation = random.nextDouble() * 0.4 + 0.2;
+    final double lightness = random.nextDouble() * 0.05 + 0.85;
     return Container(
       width: 170,
       padding: EdgeInsets.all(20),
