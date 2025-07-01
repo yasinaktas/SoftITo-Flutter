@@ -32,6 +32,16 @@ class _TasarimTekrarState extends State<TasarimTekrar> {
         backgroundColor: Colors.pink,
         foregroundColor: Colors.white,
       ),
+      body: Container(
+        color: Colors.red,
+        constraints: BoxConstraints(
+          minWidth: 100,
+          minHeight: 100,
+          maxWidth: 200,
+          maxHeight: 200,
+        ),
+        child: SingleChildScrollView(child: Text("Yasin" * 50)),
+      ),
     );
   }
 }

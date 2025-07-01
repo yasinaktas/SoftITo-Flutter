@@ -167,6 +167,7 @@ class _TaskDetailState extends State<TaskDetail> {
               ),
               HomeCard3(taskToday: widget.taskToday),
               HomeCard3(taskToday: widget.taskToday),
+              HomeCard3(taskToday: widget.taskToday),
             ],
           ),
         ),
