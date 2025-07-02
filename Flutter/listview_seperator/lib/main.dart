@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listview_seperator/models/ogrenci.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +10,78 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: TasarimEkrani(),
+    );
+  }
+}
+
+class TasarimEkrani extends StatefulWidget {
+  const TasarimEkrani({super.key});
+
+  @override
+  State<TasarimEkrani> createState() => _TasarimEkraniState();
+}
+
+class _TasarimEkraniState extends State<TasarimEkrani> {
+  List<Ogrenci> tumOgrenciler = List.generate(
+    5000,
+    (index) => Ogrenci(
+      id: index + 1,
+      ad: "Öğrenci adı: ${index + 1}",
+      soyad: "Öğrenci soyadı: ${index + 1}",
+    ),
+  );
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Tasarım Ekranı")),
+      body: ListView.separated(
+        itemCount: tumOgrenciler.length,
+        itemBuilder: (context, index) =>
+            VeriAlanSabitEleman(ogrenci: tumOgrenciler[index]),
+        separatorBuilder: (context, index) {
+          if (index % 4 == 3) {
+            return Divider(thickness: 1, color: Colors.black);
+          }
+          return Container();
+        },
+      ),
+    );
+  }
+}
+
+class VeriAlanSabitEleman extends StatelessWidget {
+  final Ogrenci ogrenci;
+  const VeriAlanSabitEleman({super.key, required this.ogrenci});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 90,
+      child: Row(
+        children: [
+          Expanded(
+            child: Card(
+              color: Colors.pink.shade100,
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Align(
+                alignment: Alignment.center,
+                child: ListTile(
+                  onTap: () {},
+                  leading: CircleAvatar(child: Text(ogrenci.id.toString())),
+                  title: Text(ogrenci.ad),
+                  subtitle: Text(ogrenci.soyad),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
