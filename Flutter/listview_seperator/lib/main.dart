@@ -36,7 +36,31 @@ class _TasarimEkraniState extends State<TasarimEkrani> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Tasarım Ekranı")),
+      drawer: Drawer(
+        backgroundColor: Colors.green,
+        elevation: 2,
+        surfaceTintColor: Colors.amber,
+        shadowColor: Colors.red,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        width: 300,
+        semanticLabel: "Deneme",
+        clipBehavior: Clip.hardEdge,
+        child: Column(
+          children: [
+            Text("Deneme"),
+            DrawerHeader(
+              duration: Duration(seconds: 3),
+              child: Container(color: Colors.red),
+              padding: EdgeInsets.all(0),
+              margin: EdgeInsets.all(00),
+            ),
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        title: Text("Tasarım Ekranı"),
+        actions: [DrawerButton(), DrawerButtonIcon()],
+      ),
       body: ListView.separated(
         itemCount: tumOgrenciler.length,
         itemBuilder: (context, index) =>
