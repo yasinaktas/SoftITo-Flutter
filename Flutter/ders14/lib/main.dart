@@ -46,11 +46,12 @@ class _NavigatorKullanimiState extends State<NavigatorKullanimi> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                int? gelenSayi = await Navigator.push<int>(
                   context,
                   MaterialPageRoute(builder: (context) => RedPage()),
                 );
+                debugPrint(gelenSayi.toString());
               },
               child: Text("Kırmızı Sayfaya Git"),
             ),
