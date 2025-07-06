@@ -58,15 +58,18 @@ class _HostScreenState extends State<HostScreen> {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              border: Border.all(color: Colors.black),
-            ),
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(color: Colors.amber),
-              child: Text("Drawer Header"),
+          SizedBox(
+            height: 100,
+            child: DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                border: Border.all(color: Colors.black),
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(color: Colors.amber),
+                child: Text("Drawer Header"),
+              ),
             ),
           ),
           ListTile(
