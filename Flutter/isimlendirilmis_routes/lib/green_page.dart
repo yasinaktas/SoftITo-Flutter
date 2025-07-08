@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
-class GreenPage extends StatefulWidget {
-  const GreenPage({super.key});
+class GreenPage extends StatelessWidget {
+  final String ad;
+  const GreenPage({super.key, required this.ad});
 
-  @override
-  State<GreenPage> createState() => _RedPageState();
-}
-
-class _RedPageState extends State<GreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +18,13 @@ class _RedPageState extends State<GreenPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 20,
           children: [
-            Text("Green Page", style: Theme.of(context).textTheme.headlineLarge),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-              ),
-              onPressed: () {},
-              child: Text("Kırmızı Sayfaya Git"),
+            Text(
+              "Green Page",
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+            Text(
+              "Benim adım: $ad",
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ],
         ),
