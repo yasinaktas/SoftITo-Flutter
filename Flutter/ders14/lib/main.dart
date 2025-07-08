@@ -43,7 +43,7 @@ class _NavigatorKullanimiState extends State<NavigatorKullanimi> {
                 backgroundColor: Colors.red.shade400,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(4),
                 ),
               ),
               onPressed: () async {
@@ -61,11 +61,37 @@ class _NavigatorKullanimiState extends State<NavigatorKullanimi> {
                 backgroundColor: Colors.red.shade200,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(4),
                 ),
               ),
               onPressed: () {},
               child: Text("Sonraki Button"),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).maybePop();
+              },
+              child: Text("Maybe Pop"),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).canPop();
+              },
+              child: Text("Can Pop"),
             ),
           ],
         ),
