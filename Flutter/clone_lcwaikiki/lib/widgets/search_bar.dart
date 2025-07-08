@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AnasayfaSearchBar extends StatelessWidget {
+class CustomSearchBar extends StatelessWidget {
   final double height;
-  const AnasayfaSearchBar({super.key, this.height = 44});
+  final bool showCamera;
+  final bool showUserButton;
+  const CustomSearchBar({
+    super.key,
+    this.height = 44,
+    this.showCamera = true,
+    this.showUserButton = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,32 +54,34 @@ class AnasayfaSearchBar extends StatelessWidget {
                     height: 16,
                     color: Colors.black,
                   ),
-                  Image.asset(
-                    "images/icons/camera.png",
-                    width: 20,
-                    height: 20,
-                    color: Colors.black,
-                  ),
+                  if (showCamera)
+                    Image.asset(
+                      "images/icons/camera.png",
+                      width: 20,
+                      height: 20,
+                      color: Colors.black,
+                    ),
                   SizedBox(),
                 ],
               ),
             ),
           ),
-          Container(
-            height: height,
-            width: height,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 222, 237, 250),
-              borderRadius: BorderRadius.circular(8),
+          if (showUserButton)
+            Container(
+              height: height,
+              width: height,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 222, 237, 250),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Image.asset(
+                "images/icons/profile.png",
+                width: 24,
+                height: 24,
+                color: const Color.fromARGB(255, 0, 65, 163),
+              ),
             ),
-            child: Image.asset(
-              "images/icons/profile.png",
-              width: 24,
-              height: 24,
-              color: const Color.fromARGB(255, 0, 65, 163),
-            ),
-          ),
         ],
       ),
     );

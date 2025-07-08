@@ -1,6 +1,6 @@
+import 'package:clone_lcwaikiki/models/brand.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/brand.dart';
 
 class BrandList extends StatefulWidget {
   final double height;

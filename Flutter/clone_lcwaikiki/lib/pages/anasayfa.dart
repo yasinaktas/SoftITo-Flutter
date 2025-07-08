@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import '../../models/brand.dart';
-import 'brand_list.dart';
-import 'image_carousel.dart';
-import 'search_bar.dart';
+import '../models/brand.dart';
+import '../widgets/brand_list.dart';
+import '../widgets/image_carousel.dart';
+import '../widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -118,7 +118,7 @@ class _AnasayfaState extends State<Anasayfa> {
               ),
             ),
             Divider(color: Colors.grey.shade200, thickness: 0.5),
-            AnasayfaSearchBar(),
+            CustomSearchBar(),
             CustomImageCarousel(imageUrls: carouselImages1, heightRatio: 0.55),
             SizedBox(height: 8.0),
             CustomImageCarousel(imageUrls: carouselImages2, heightRatio: 0.08),
