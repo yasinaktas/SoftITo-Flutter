@@ -1,3 +1,4 @@
+import 'package:clone_pizza_app/pizza_screen.dart';
 import 'package:clone_pizza_app/verification_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -81,9 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => VerificationScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => PizzaScreen()),
                       );
                     },
                     child: Text(
@@ -110,7 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       backgroundColor: Color(0xffF8F8F8),
                       elevation: 0,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VerificationScreen(),
+                        ),
+                      );
+                    },
                     child: Text(
                       "Sign me up",
                       style: TextStyle(
