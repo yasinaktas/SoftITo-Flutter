@@ -1,10 +1,10 @@
 name: clone_lcwaikiki
-description: "A new Flutter project."
+description: "Clone of LC Waikiki which is a well-known Turkish fashion retail brand."
 publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ^3.8.0
+  sdk: ^3.8.1
 
 dependencies:
   flutter:
@@ -23,3 +23,4 @@ flutter:
     - images/anasayfa/
     - images/kategori/
     - images/urun/
+    - images/kategori_orta/

@@ -5,14 +5,14 @@ class CustomBottomNavBar extends StatefulWidget {
   final double centerButtonSize;
   final int selectedIndex;
   final Function(int index) onItemSelected;
-  final Function(bool selected) onCenterButtonPressed;
-  const CustomBottomNavBar({
+  bool isCenterButtonSelected;
+  CustomBottomNavBar({
     super.key,
     this.height = 56,
     this.centerButtonSize = 72,
     this.selectedIndex = 0,
-    required this.onCenterButtonPressed,
     required this.onItemSelected,
+    required this.isCenterButtonSelected,
   });
 
   @override
@@ -21,7 +21,6 @@ class CustomBottomNavBar extends StatefulWidget {
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   final selectedColor = const Color.fromARGB(255, 0, 78, 142);
-  bool isCenterButtonSelected = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +49,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 title: "Ana Sayfa",
                 icon: Icons.home_outlined,
                 index: 0,
-                onTap: (widget.onItemSelected),
+                onTap: (index) {
+                  widget.onItemSelected(0);
+                },
                 isSelected: widget.selectedIndex == 0,
               ),
               BottomNavMenuItem(
@@ -58,7 +59,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 title: "Kategoriler",
                 icon: Icons.menu,
                 index: 1,
-                onTap: (widget.onItemSelected),
+                onTap: (index) {
+                  widget.onItemSelected(1);
+                },
                 isSelected: widget.selectedIndex == 1,
               ),
               Container(margin: EdgeInsets.symmetric(horizontal: 20)),
@@ -67,7 +70,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 title: "Sepetim",
                 icon: Icons.shopping_bag_rounded,
                 index: 2,
-                onTap: (widget.onItemSelected),
+                onTap: (index) {
+                  widget.onItemSelected(2);
+                },
                 isSelected: widget.selectedIndex == 2,
               ),
               BottomNavMenuItem(
@@ -75,47 +80,47 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 title: "Favorilerim",
                 icon: Icons.favorite_outline,
                 index: 3,
-                onTap: (widget.onItemSelected),
+                onTap: (index) {
+                  widget.onItemSelected(3);
+                },
                 isSelected: widget.selectedIndex == 3,
               ),
             ],
           ),
           Positioned(
-            top:
-                -(widget.centerButtonSize /
-                    2), // Yarıdan dışarı taşacak şekilde ayarla
+            top: -(widget.centerButtonSize / 2),
             left:
                 MediaQuery.of(context).size.width / 2 -
-                (widget.centerButtonSize /
-                    2), // Ortalamak için (Container genişliği - çember genişliği)/2
-            child: Container(
-              width: widget.centerButtonSize,
-              height: widget.centerButtonSize,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.black,
-                border: Border.all(
-                  color: Colors.white,
-                  width: widget.centerButtonSize * 0.075,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 1,
-                    spreadRadius: 0,
-                    offset: Offset(0, -2),
+                (widget.centerButtonSize / 2),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  widget.isCenterButtonSelected =
+                      !widget.isCenterButtonSelected;
+                  widget.onItemSelected(4);
+                });
+              },
+              child: Container(
+                width: widget.centerButtonSize,
+                height: widget.centerButtonSize,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black,
+                  border: Border.all(
+                    color: Colors.white,
+                    width: widget.centerButtonSize * 0.075,
                   ),
-                ],
-              ),
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isCenterButtonSelected = !isCenterButtonSelected;
-                    widget.onCenterButtonPressed(isCenterButtonSelected);
-                  });
-                },
-                icon: Icon(
-                  isCenterButtonSelected
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 1,
+                      spreadRadius: 0,
+                      offset: Offset(0, -2),
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  widget.isCenterButtonSelected
                       ? Icons.close
                       : Icons.grid_view_rounded,
                   color: Colors.white,

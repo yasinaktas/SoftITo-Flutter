@@ -1,3 +1,6 @@
+import 'package:clone_lcwaikiki/pages/kategoriler_orta.dart';
+import 'package:clone_lcwaikiki/pages/sepetim.dart';
+
 import 'pages/anasayfa.dart';
 import 'package:flutter/material.dart';
 
@@ -52,37 +55,59 @@ class _HostPageState extends State<HostPage> {
   final List<Widget> _pages = [
     Anasayfa(),
     Kategoriler(),
-    Anasayfa(),
+    Sepetim(),
     Kategoriler(),
+    KategorilerOrta(),
   ];
   int _selectedIndex = 0;
+  bool _isCenterButtonSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          _pages[_selectedIndex],
+          if (_isCenterButtonSelected)
+            Positioned.fill(
+              child: Opacity(
+                opacity: 0.5,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isCenterButtonSelected = false;
+                    });
+                  },
+                  child: Container(color: Colors.black),
+                ),
+              ),
+            ),
+          if (_isCenterButtonSelected) KategorilerOrta(),
+        ],
+      ),
       bottomNavigationBar: CustomBottomNavBar(
         selectedIndex: _selectedIndex,
         onItemSelected: (index) {
+          if (index == 4) {
+            setState(() {
+              _isCenterButtonSelected = !_isCenterButtonSelected;
+            });
+            return;
+          }
+          if (index == 2) {
+            // Sepetim'e tıklandığında Sepetim sayfasına yönlendir
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Sepetim()),
+            );
+            return;
+          }
           setState(() {
             _selectedIndex = index;
+            _isCenterButtonSelected = false;
           });
         },
-        onCenterButtonPressed: (selected) {
-          setState(() {
-            if (selected) {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return Container(
-                    height: 200,
-                    padding: EdgeInsets.all(16),
-                    child: Text("Deneme"),
-                  );
-                },
-              );
-            }
-          });
-        },
+        isCenterButtonSelected: _isCenterButtonSelected,
       ),
     );
   }
