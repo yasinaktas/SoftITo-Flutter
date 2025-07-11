@@ -34,11 +34,9 @@ class _OrtalamaHesaplaPageState extends State<OrtalamaHesaplaPage> {
               Expanded(flex: 2, child: Container(child: _buildForm())),
               Expanded(
                 flex: 1,
-                child: Container(
-                  child: OrtalamaGoster(
-                    ortalama: DataHelper.ortalamaHesapla(),
-                    dersSayisi: DataHelper.tumEklenecekDersler.length,
-                  ),
+                child: OrtalamaGoster(
+                  ortalama: DataHelper.ortalamaHesapla(),
+                  dersSayisi: DataHelper.tumEklenecekDersler.length,
                 ),
               ),
             ],
