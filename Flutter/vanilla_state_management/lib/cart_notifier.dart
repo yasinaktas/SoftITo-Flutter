@@ -38,6 +38,5 @@ class CartNotifier extends ChangeNotifier {
       (sum, item) => sum + (item.product.price * item.quantity),
     );
     _totalItems = _cart.values.fold(0, (sum, item) => sum + item.quantity);
-    notifyListeners();
   }
 }
