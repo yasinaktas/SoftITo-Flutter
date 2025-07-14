@@ -3,6 +3,8 @@ import 'package:not_hesaplama_uygulamasi/constants/sabitler.dart';
 import 'package:not_hesaplama_uygulamasi/helper/data_helper.dart';
 import 'package:not_hesaplama_uygulamasi/models/ders.dart';
 import 'package:not_hesaplama_uygulamasi/widgets/ders_listesi.dart';
+import 'package:not_hesaplama_uygulamasi/widgets/harf_dropdown_widget.dart';
+import 'package:not_hesaplama_uygulamasi/widgets/kredi_dropdown_widget.dart';
 import 'package:not_hesaplama_uygulamasi/widgets/ortalama_goster.dart';
 
 class OrtalamaHesaplaPage extends StatefulWidget {
@@ -62,7 +64,7 @@ class _OrtalamaHesaplaPageState extends State<OrtalamaHesaplaPage> {
         children: [
           // textFormField gelecek
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
             child: _buildTextFormField(),
           ),
           Row(
@@ -72,20 +74,28 @@ class _OrtalamaHesaplaPageState extends State<OrtalamaHesaplaPage> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 4.0,
+                    horizontal: 12.0,
                     vertical: 8,
                   ),
-                  child: _buildHarfler(),
+                  child: HarfDropdownWidget(
+                    onHarfSecildi: (value) {
+                      secilenHarfDeger = value;
+                    },
+                  ),
                 ),
               ),
               // Kredi DropdownButton gelecek
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 4.0,
+                    horizontal: 12.0,
                     vertical: 8,
                   ),
-                  child: _buildKrediler(),
+                  child: KrediDropdownWidget(
+                    onKrediSecildi: (value) {
+                      secilenKrediDeger = value;
+                    },
+                  ),
                 ),
               ),
               //IconButton gelecek
@@ -121,54 +131,6 @@ class _OrtalamaHesaplaPageState extends State<OrtalamaHesaplaPage> {
           girilenDersAdi = newValue!;
         });
       },
-    );
-  }
-
-  Widget _buildHarfler() {
-    return Container(
-      alignment: Alignment.center,
-      padding: Sabitler.dropDownPadding,
-      decoration: BoxDecoration(
-        color: Sabitler.anaRenk.shade50,
-        borderRadius: Sabitler.borderRadius,
-      ),
-      child: DropdownButton<double>(
-        elevation: 16,
-        iconEnabledColor: Sabitler.anaRenk.shade200,
-        focusColor: Colors.transparent,
-        underline: Container(),
-        value: secilenHarfDeger,
-        items: DataHelper.tumDerslerinHarfleri(),
-        onChanged: (value) {
-          setState(() {
-            secilenHarfDeger = value!;
-          });
-        },
-      ),
-    );
-  }
-
-  Widget _buildKrediler() {
-    return Container(
-      alignment: Alignment.center,
-      padding: Sabitler.dropDownPadding,
-      decoration: BoxDecoration(
-        color: Sabitler.anaRenk.shade50,
-        borderRadius: Sabitler.borderRadius,
-      ),
-      child: DropdownButton<double>(
-        elevation: 16,
-        iconEnabledColor: Sabitler.anaRenk.shade200,
-        focusColor: Colors.transparent,
-        underline: Container(),
-        value: secilenKrediDeger,
-        items: DataHelper.dropDownKrediMenuBilgisi(),
-        onChanged: (value) {
-          setState(() {
-            secilenKrediDeger = value!;
-          });
-        },
-      ),
     );
   }
 
