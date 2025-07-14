@@ -1,6 +1,6 @@
-name: not_hesaplama_uygulamasi
+name: ders16
 description: "A new Flutter project."
-publish_to: "none"
+publish_to: 'none'
 version: 0.1.0
 
 environment:
@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -18,7 +17,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  fonts:
-    - family: Rajdhani
-      fonts:
-        - asset: fonts/Rajdhani-Regular.ttf

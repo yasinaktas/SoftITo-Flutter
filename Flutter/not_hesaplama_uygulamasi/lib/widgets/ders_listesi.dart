@@ -54,7 +54,7 @@ class DersListesi extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               "Lütfen Ders Ekleyiniz",
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: TextStyle(fontSize: 20, fontFamily: "Rajdhani"),
             ),
           );
   }
