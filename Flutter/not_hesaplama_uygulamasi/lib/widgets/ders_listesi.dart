@@ -52,7 +52,10 @@ class DersListesi extends StatelessWidget {
           )
         : Container(
             alignment: Alignment.center,
-            child: Text("Lütfen Ders Ekleyiniz"),
+            child: Text(
+              "Lütfen Ders Ekleyiniz",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
           );
   }
 }
