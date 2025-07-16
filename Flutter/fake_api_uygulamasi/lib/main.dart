@@ -44,15 +44,13 @@ class _MainAppState extends State<MainApp> {
                 itemCount: postList.length,
                 itemBuilder: (context, index) {
                   var post = postList[index];
-                  return ListTile(
-                    
-                  );
+                  return ListTile(title: Text(post.title));
                 },
               );
             } else if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             } else {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }
           },
         ),
@@ -62,12 +60,10 @@ class _MainAppState extends State<MainApp> {
 
   Future<List<PostModel>> getAllPosts() async {
     try {
-      var response = await Dio().get(
-        "https://jsonplaceholder.typicode.com/posts",
-      );
+      var response = await Dio().get("https://dummyjson.com/posts");
       List<PostModel> posts = [];
       if (response.statusCode == 200) {
-        posts = (response.data as List)
+        posts = (response.data["posts"] as List)
             .map((postMap) => PostModel.fromJson(postMap))
             .toList();
       }
