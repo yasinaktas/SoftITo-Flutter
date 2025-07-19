@@ -1,3 +1,6 @@
+import 'package:clone_lcwaikiki/models/global_state.dart';
+import 'package:clone_lcwaikiki/pages/giris.dart';
+import 'package:clone_lcwaikiki/pages/profil.dart';
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -67,19 +70,34 @@ class CustomSearchBar extends StatelessWidget {
             ),
           ),
           if (showUserButton)
-            Container(
-              height: height,
-              width: height,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 222, 237, 250),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Image.asset(
-                "images/icons/profile.png",
-                width: 24,
-                height: 24,
-                color: const Color.fromARGB(255, 0, 65, 163),
+            InkWell(
+              onTap: () {
+                if (GlobalState.isLoggedIn == true) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Profil()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GirisSayfasi()),
+                  );
+                }
+              },
+              child: Container(
+                height: height,
+                width: height,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 222, 237, 250),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Image.asset(
+                  "images/icons/profile.png",
+                  width: 24,
+                  height: 24,
+                  color: const Color.fromARGB(255, 0, 65, 163),
+                ),
               ),
             ),
         ],

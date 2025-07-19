@@ -1,3 +1,4 @@
+import 'package:clone_lcwaikiki/pages/urunler.dart';
 import 'package:flutter/material.dart';
 
 import '../models/category.dart';
@@ -15,7 +16,12 @@ class CategoryCard extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         color: Colors.grey.shade100,
         child: ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Urunler()),
+            );
+          },
           title: Text(
             category.name.toUpperCase(),
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),

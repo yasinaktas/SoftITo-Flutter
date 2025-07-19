@@ -1,16 +1,26 @@
-import 'package:clone_lcwaikiki/widgets/cart_card.dart';
+import 'dart:math';
+
+import 'package:clone_lcwaikiki/models/global_state.dart';
+import 'package:clone_lcwaikiki/models/urun.dart';
+import 'package:clone_lcwaikiki/widgets/sepet_card.dart';
 import 'package:flutter/material.dart';
 
-class Sepetim extends StatelessWidget {
+class Sepetim extends StatefulWidget {
   const Sepetim({super.key});
 
+  @override
+  State<Sepetim> createState() => _SepetimState();
+}
+
+class _SepetimState extends State<Sepetim> {
+  bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         title: Text(
-          "Sepetim (4 Ürün)",
+          "Sepetim (${GlobalState.cart.length} Ürün)",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
         ),
         centerTitle: true,
@@ -104,7 +114,7 @@ class Sepetim extends StatelessWidget {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      "0,00 TL",
+                      "${GlobalState.cart.fold(0.0, (sum, item) => sum + item.price).toInt()} TL",
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
@@ -179,7 +189,14 @@ class Sepetim extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Checkbox(value: false, onChanged: (value) {}),
+                    Checkbox(
+                      value: _isSelected,
+                      onChanged: (value) {
+                        setState(() {
+                          _isSelected = value!;
+                        });
+                      },
+                    ),
                     Text(
                       "LC Waikiki",
                       style: TextStyle(
@@ -199,41 +216,49 @@ class Sepetim extends StatelessWidget {
                     ),
                   ],
                 ),
-                Divider(
-                  height: 0,
-                  color: Colors.grey.shade200,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                SepetCard(),
-                Divider(
-                  height: 0,
-                  color: Colors.grey.shade200,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                SepetCard(),
-                Divider(
-                  height: 0,
-                  color: Colors.grey.shade200,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                SepetCard(),
-                Divider(
-                  height: 0,
-                  color: Colors.grey.shade200,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                SepetCard(),
-                Divider(
-                  height: 0,
-                  color: Colors.grey.shade200,
-                  indent: 8,
-                  endIndent: 8,
-                ),
-                SepetCard(),
+                for (Urun urun in GlobalState.cart)
+                  Dismissible(
+                    key: Key(Random().nextInt(1000000).toString()),
+                    background: Container(
+                      color: Colors.red,
+                      alignment: Alignment.centerRight,
+                      padding: EdgeInsets.only(right: 16),
+                      child: Icon(Icons.delete, color: Colors.white),
+                    ),
+                    onDismissed: (direction) {
+                      setState(() {
+                        GlobalState.cart.remove(urun);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("${urun.name} sepetten çıkarıldı."),
+                          ),
+                        );
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        Divider(
+                          height: 1,
+                          color: Colors.grey.shade200,
+                          indent: 16,
+                          endIndent: 16,
+                        ),
+                        SepetCard(
+                          urun: urun,
+                          onFavoriteToggle: () {
+                            setState(() {
+                              urun.favorited = !urun.favorited;
+                              if (urun.favorited) {
+                                GlobalState.favorites.add(urun);
+                              } else {
+                                GlobalState.favorites.remove(urun);
+                              }
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
               ],
             ),
           ),

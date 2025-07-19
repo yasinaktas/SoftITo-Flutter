@@ -1,4 +1,6 @@
+import 'package:clone_lcwaikiki/models/global_state.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
 
 class CustomBottomNavBar extends StatefulWidget {
   final double height;
@@ -68,7 +70,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               BottomNavMenuItem(
                 height: widget.height * 0.8,
                 title: "Sepetim",
-                icon: Icons.shopping_bag_rounded,
+                icon: Icons.shopping_bag_outlined,
                 index: 2,
                 onTap: (index) {
                   widget.onItemSelected(2);
@@ -175,7 +177,40 @@ class BottomNavMenuItem extends StatelessWidget {
                   ),
                 )
               : SizedBox(height: 8),
-          Icon(icon, color: isSelected ? selectedColor : Colors.black),
+          if (index == 0 || index == 1)
+            Icon(icon, color: isSelected ? selectedColor : Colors.black),
+          if (index == 2)
+            badges.Badge(
+              badgeStyle: badges.BadgeStyle(badgeColor: Colors.transparent),
+              badgeContent: CircleAvatar(
+                radius: 8,
+                backgroundColor: const Color.fromARGB(255, 0, 50, 135),
+                child: Text(
+                  GlobalState.cart.length.toString(),
+                  style: TextStyle(fontSize: 10, color: Colors.white),
+                ),
+              ),
+              child: Icon(
+                icon,
+                color: isSelected ? selectedColor : Colors.black,
+              ),
+            ),
+          if (index == 3)
+            badges.Badge(
+              badgeStyle: badges.BadgeStyle(badgeColor: Colors.transparent),
+              badgeContent: CircleAvatar(
+                radius: 8,
+                backgroundColor: const Color.fromARGB(255, 0, 50, 135),
+                child: Text(
+                  GlobalState.favorites.length.toString(),
+                  style: TextStyle(fontSize: 10, color: Colors.white),
+                ),
+              ),
+              child: Icon(
+                icon,
+                color: isSelected ? selectedColor : Colors.black,
+              ),
+            ),
           Text(
             title,
             style: TextStyle(

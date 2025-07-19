@@ -1,3 +1,6 @@
+import 'package:clone_lcwaikiki/models/global_state.dart';
+import 'package:clone_lcwaikiki/pages/favoriler.dart';
+import 'package:clone_lcwaikiki/pages/giris.dart';
 import 'package:clone_lcwaikiki/pages/kategoriler_orta.dart';
 import 'package:clone_lcwaikiki/pages/sepetim.dart';
 
@@ -56,7 +59,7 @@ class _HostPageState extends State<HostPage> {
     Anasayfa(),
     Kategoriler(),
     Sepetim(),
-    Kategoriler(),
+    Favoriler(),
     KategorilerOrta(),
   ];
   int _selectedIndex = 0;
@@ -93,12 +96,17 @@ class _HostPageState extends State<HostPage> {
               _isCenterButtonSelected = !_isCenterButtonSelected;
             });
             return;
-          }
-          if (index == 2) {
-            // Sepetim'e tıklandığında Sepetim sayfasına yönlendir
+          } else if (index == 2) {
+            if (GlobalState.isLoggedIn == true) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Sepetim()),
+              );
+              return;
+            }
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Sepetim()),
+              MaterialPageRoute(builder: (context) => GirisSayfasi()),
             );
             return;
           }

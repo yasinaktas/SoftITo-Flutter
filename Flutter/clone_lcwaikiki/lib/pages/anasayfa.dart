@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:clone_lcwaikiki/pages/urunler.dart';
+
 import '../models/brand.dart';
 import '../widgets/brand_list.dart';
 import '../widgets/image_carousel.dart';
@@ -119,7 +121,18 @@ class _AnasayfaState extends State<Anasayfa> {
             ),
             Divider(color: Colors.grey.shade200, thickness: 0.5),
             CustomSearchBar(),
-            CustomImageCarousel(imageUrls: carouselImages1, heightRatio: 0.55),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Urunler()),
+                );
+              },
+              child: CustomImageCarousel(
+                imageUrls: carouselImages1,
+                heightRatio: 0.55,
+              ),
+            ),
             SizedBox(height: 8.0),
             CustomImageCarousel(imageUrls: carouselImages2, heightRatio: 0.08),
             for (int i = 0; i < images1.length; i++)

@@ -1,3 +1,4 @@
+import 'package:clone_lcwaikiki/pages/urunler.dart';
 import 'package:flutter/material.dart';
 
 import '../models/category.dart';
