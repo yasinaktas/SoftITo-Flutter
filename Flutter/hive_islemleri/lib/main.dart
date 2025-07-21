@@ -51,11 +51,12 @@ class MyProject extends StatelessWidget {
     );
   }
 
-  Future<int> veriEkle(String value) async {
+  Future<int> veriEkle(var value) async {
     // hive'de add ve put ile veri eklenebilir
     // add -> veriyi ekler ve keyi otomatik atar, index ile (list gibi)
     // put -> veriyi eklerken keyi biz veririz (map gibi)
     var box = Hive.box("test");
+    await box.clear();
     int result = await box.add(value);
     return result;
   }
