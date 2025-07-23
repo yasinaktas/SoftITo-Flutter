@@ -64,9 +64,19 @@ class _FirestoreKullanimiState extends State<FirestoreKullanimi> {
   }
 
   void _veriEklemeSet() async {
-    await firestore.doc("users/JdNo88x8YH2l6vtgWcYv").set({
+    /*await firestore.doc("users/JdNo88x8YH2l6vtgWcYv").set({
       "okul": "YTÜ",
-    }, SetOptions(merge: true));
+    }, SetOptions(merge: true));*/
+    var yeniDocID = firestore.collection("users").doc().id;
+    Map<String, dynamic> eklenecekUser = {};
+    eklenecekUser["userID"] = yeniDocID;
+    eklenecekUser["name"] = "Zeynep";
+    eklenecekUser["age"] = 20;
+    eklenecekUser["school"] = "İÜ";
+    eklenecekUser["createdAt"] = FieldValue.serverTimestamp();
+    await firestore
+        .doc("users/$yeniDocID")
+        .set(eklenecekUser, SetOptions(merge: true));
   }
 
   void _veriEklemeAdd() async {
