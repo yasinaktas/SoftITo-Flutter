@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:navigator_2_kullanimi/dessert_details_screen.dart';
+import 'package:navigator_2_kullanimi/dessert_list_screen.dart';
 import 'package:navigator_2_kullanimi/models/dessert.dart';
+import 'package:navigator_2_kullanimi/unknown_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,7 +16,7 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  Dessert? selectedDessert;
+  Dessert? _selectedDessert;
   List<Dessert> desserts = [
     Dessert(
       name: "Cupcake",
@@ -25,7 +28,7 @@ class _MainAppState extends State<MainApp> {
       name: "Donut",
       description: "A delicios donut",
       imageUrl:
-          "https://cdn.britannica.com/38/230838-050-D0173E79/doughnuts-donuts.jpg",
+          "https://i.lezzet.com.tr/images-xxlarge-secondary/donut-nasil-ortaya-cikti-2ad6254e-92d9-4169-8463-25e2c41a140a",
     ),
     Dessert(
       name: "Eclair",
@@ -34,21 +37,49 @@ class _MainAppState extends State<MainApp> {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGFuZNBN4GaG8-AjTLX014jmjto3mCaOXpqA&s",
     ),
   ];
+  bool show404 = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Candy Shop",
       home: Navigator(
-        pages: const [
+        pages: [
           MaterialPage(
-            key: ValueKey("DessertsPage"),
-            child: Scaffold(
-              body: Center(child: Text("Welcome to the Candy Shop!")),
+            key: const ValueKey("DessertsPage"),
+            child: DessertListScreen(
+              desserts: desserts,
+              onTapped: _handleDessertTapped,
             ),
           ),
+          if (_selectedDessert != null)
+            MaterialPage(
+              key: ValueKey(_selectedDessert),
+              child: DessertDetailsScreen(dessert: _selectedDessert!),
+            ),
+          if (show404)
+            const MaterialPage(
+              key: ValueKey("UnknownPage"),
+              child: UnknownScreen(),
+            ),
         ],
         onDidRemovePage: (page) {},
+        onPopPage: (route, result) {
+          if (!route.didPop(result)) {
+            return false;
+          }
+          setState(() {
+            _selectedDessert = null;
+            show404 = false;
+          });
+          return true;
+        },
       ),
     );
+  }
+
+  void _handleDessertTapped(Dessert dessert) {
+    setState(() {
+      _selectedDessert = dessert;
+    });
   }
 }

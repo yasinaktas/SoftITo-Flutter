@@ -13,14 +13,28 @@ class DessertListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("All Desserts"),
+      appBar: AppBar(title: Text("All Desserts")),
+      body: ListView.builder(
+        itemCount: desserts.length,
+        itemBuilder: (context, index) {
+          var des = desserts[index];
+          return ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: SizedBox(
+                width: 72,
+                height: 72,
+                child: Image.network(des.imageUrl, fit: BoxFit.cover),
+              ),
+            ),
+            title: Text(des.name),
+            subtitle: Text(des.description),
+            onTap: () {
+              onTapped(des);
+            },
+          );
+        },
       ),
-      body: ListView.builder(itemBuilder: (context,index){
-        return ListTile(
-          
-        );
-      }),
     );
   }
 }
