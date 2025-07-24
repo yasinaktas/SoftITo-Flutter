@@ -10,6 +10,9 @@ class AnimasyonYapilari extends StatefulWidget {
 class _AnimasyonYapilariState extends State<AnimasyonYapilari>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
+  late Animation animation;
+  late Animation animation2;
+  late Animation animation3;
 
   @override
   void initState() {
@@ -17,8 +20,6 @@ class _AnimasyonYapilariState extends State<AnimasyonYapilari>
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 2),
-      lowerBound: 20,
-      upperBound: 40,
     );
     controller.addListener(() {
       setState(() {
@@ -28,16 +29,28 @@ class _AnimasyonYapilariState extends State<AnimasyonYapilari>
     controller.addStatusListener((status) {
       debugPrint("Durum: $status");
       /*if (status == AnimationStatus.completed) {
-        controller.reverse().orCancel();
+        controller.reverse().orCancel;
       } else if (status == AnimationStatus.dismissed) {
-        controller.forward().orCancel();
+        controller.forward().orCancel;
       }*/
     });
+    //animation = Tween<double>(begin: 20,end: 50).animate(controller);
+    animation = ColorTween(
+      begin: Colors.amber,
+      end: Colors.green,
+    ).animate(controller);
+
+    animation2 = AlignmentTween(
+      begin: Alignment(-1, -1),
+      end: Alignment(1, 1),
+    ).animate(controller);
+
+    animation3 = CurvedAnimation(parent: controller, curve: Curves.bounceIn);
 
     //controller.forward();
     //controller.repeat();
 
-    controller.forward(from: 20);
+    controller.forward();
     //controller.reverse(from: 50);
   }
 
@@ -52,7 +65,8 @@ class _AnimasyonYapilariState extends State<AnimasyonYapilari>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: animation.value,
+        foregroundColor: Colors.white,
         title: Text("Animasyonlar"),
         centerTitle: true,
         bottom: PreferredSize(
@@ -64,7 +78,15 @@ class _AnimasyonYapilariState extends State<AnimasyonYapilari>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Yasin Aktaş", style: TextStyle(fontSize: controller.value)),
+            Expanded(
+              child: Container(
+                alignment: animation2.value,
+                child: Text(
+                  "Yasin Aktaş",
+                  style: TextStyle(fontSize: animation3.value * 36),
+                ),
+              ),
+            ),
           ],
         ),
       ),
